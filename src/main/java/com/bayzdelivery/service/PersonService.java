@@ -10,4 +10,6 @@ public interface PersonService {
 
   public Person findById(Long personId);
 
+  public boolean findByEmailNameReg(String email,String name,String registrationNumber);
+
 }

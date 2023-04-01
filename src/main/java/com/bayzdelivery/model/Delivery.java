@@ -1,7 +1,8 @@
 package com.bayzdelivery.model;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,20 +25,20 @@ public class Delivery implements Serializable{
 
   @NotNull
   @Column(name = "start_time")
-  Instant startTime;
+  Timestamp startTime;
 
   @NotNull
   @Column(name = "end_time")
-  Instant endTime;
+  Timestamp endTime;
 
   @Column(name = "distance")
-  Long distance;
+  Double distance;
 
   @Column(name = "price")
-  Long price;
+  Double price;
 
   @Column(name = "comission")
-  Long comission;
+  Double comission;
 
   @ManyToOne
   @JoinColumn(name = "delivery_man_id", referencedColumnName = "id")
@@ -55,44 +56,44 @@ public class Delivery implements Serializable{
     this.id = id;
   }
 
-  public Instant getStartTime() {
+  public Timestamp getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(Instant startTime) {
+  public void setStartTime(Timestamp startTime) {
     this.startTime = startTime;
   }
 
-  public Instant getEndTime() {
+  public Timestamp getEndTime() {
     return endTime;
   }
 
-  public void setEndTime(Instant endTime) {
+  public void setEndTime(Timestamp endTime) {
     this.endTime = endTime;
   }
 
-  public Long getDistance() {
+  public Double getDistance() {
     return distance;
   }
 
-  public void setDistance(Long distance) {
+  public void setDistance(Double distance) {
     this.distance = distance;
   }
 
-  public Long getPrice() {
+  public Double getPrice() {
     return price;
   }
 
-  public void setPrice(Long price) {
+  public void setPrice(Double price) {
     this.price = price;
   }
 
-  public Long getComission() {
+  public Double getComission() {
     return comission;
   }
 
-  public void setComission(Long comission) {
-    this.comission = comission;
+  public void setComission(double d) {
+    this.comission = d;
   }
 
   public Person getDeliveryMan() {

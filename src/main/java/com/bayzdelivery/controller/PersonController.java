@@ -20,7 +20,12 @@ public class PersonController {
 
   @PostMapping(path = "/api/person")
   public ResponseEntity<Person> register(@RequestBody Person p) {
-    return ResponseEntity.ok(personService.save(p));
+    if(!personService.findByEmailNameReg(p.getEmail(),p.getName(),p.getRegistrationNumber())) {
+      return ResponseEntity.ok(personService.save(p));
+    }
+    else {
+      return ResponseEntity.badRequest().build();
+    }
   }
 
   @GetMapping(path = "/api/person")
@@ -28,8 +33,10 @@ public class PersonController {
     return ResponseEntity.ok(personService.getAll());
   }
 
-  @GetMapping(path = "/api/person/{pers-id}")
-  public ResponseEntity<Person> getPersonById(@PathVariable(name="person-id", required=true)Long personId) {
+//Solved Functional bug for Get Request
+
+  @GetMapping(path = "/api/person/{id}")
+  public ResponseEntity<Person> getPersonById(@PathVariable(name="id", required=true)Long personId) {
     Person person = personService.findById(personId);
     if (person != null) {
       return ResponseEntity.ok(person);

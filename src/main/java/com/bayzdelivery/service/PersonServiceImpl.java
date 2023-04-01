@@ -32,6 +32,10 @@ public class PersonServiceImpl implements PersonService{
     return dbPerson.orElse(null);
   }
 
+  public boolean findByEmailNameReg(String email,String name,String registrationNumber) {
 
+    Optional<Person> dbPerson = personRepository.getByEmailOrNameOrRegistrationNumber(email,name,registrationNumber);
+    return dbPerson.isPresent();
+  }
 
 }
